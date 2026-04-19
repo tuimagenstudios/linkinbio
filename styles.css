@@ -133,6 +133,12 @@ body {
   gap: 0;
 }
 
+.avatar img {
+  object-fit: contain;
+  padding: 4px;
+  background: #e8d5b0;
+}
+
 /* ── Avatar / Logo ── */
 .avatar-ring {
   width: 88px;
