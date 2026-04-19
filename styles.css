@@ -1,0 +1,466 @@
+/* ============================================
+   TUIMAGEN STUDIO · Link in Bio Card
+   Paleta: #05091a (fondo) · #00e0ff (cyan)
+           #00ff88 (verde) · #a855f7 (violeta)
+   Fuentes: Syne 700/800 · DM Sans 400/500
+   ============================================ */
+
+/* ── Variables de diseño ── */
+:root {
+  --bg:         #05091a;
+  --card-bg:    rgba(8, 14, 35, 0.85);
+  --border:     rgba(0, 224, 255, 0.15);
+  --cyan:       #00e0ff;
+  --green:      #00ff88;
+  --violet:     #a855f7;
+  --white:      #f0f4ff;
+  --muted:      rgba(240, 244, 255, 0.45);
+  --font-display: 'Syne', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --radius-card:  24px;
+  --radius-btn:   14px;
+  --shadow-glow:  0 0 40px rgba(0, 224, 255, 0.08);
+}
+
+/* ── Reset base ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  min-height: 100dvh;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--white);
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Fondo: grid sutil ── */
+.bg-grid {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 224, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 224, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Orbes de luz ambiental ── */
+.orb {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+  animation: orb-drift 12s ease-in-out infinite alternate;
+}
+.orb-1 {
+  width: 380px; height: 380px;
+  background: rgba(0, 224, 255, 0.07);
+  top: -100px; left: -100px;
+  animation-duration: 14s;
+}
+.orb-2 {
+  width: 300px; height: 300px;
+  background: rgba(168, 85, 247, 0.08);
+  bottom: -80px; right: -80px;
+  animation-duration: 10s;
+  animation-direction: alternate-reverse;
+}
+.orb-3 {
+  width: 200px; height: 200px;
+  background: rgba(0, 255, 136, 0.06);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  animation-duration: 18s;
+}
+
+@keyframes orb-drift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(30px, 20px) scale(1.1); }
+}
+
+/* ── Wrapper de la tarjeta ── */
+.card-wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+
+  /* Fade-in al cargar */
+  animation: card-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes card-in {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── La tarjeta ── */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: 40px 28px 32px;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow:
+    var(--shadow-glow),
+    0 2px 0 rgba(0, 224, 255, 0.12) inset,
+    0 40px 80px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* ── Avatar / Logo ── */
+.avatar-ring {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, var(--cyan), var(--violet), var(--green));
+  margin-bottom: 18px;
+  animation: ring-rotate 8s linear infinite;
+}
+
+@keyframes ring-rotate {
+  from { filter: hue-rotate(0deg); }
+  to   { filter: hue-rotate(360deg); }
+}
+
+.avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid var(--bg);
+}
+
+/* Si usás imagen: */
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.avatar-letter {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--cyan), var(--violet));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+/* ── Nombre ── */
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(22px, 6vw, 28px);
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.name .accent {
+  color: var(--cyan);
+}
+
+/* ── Tagline ── */
+.tagline {
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+  letter-spacing: 0.3px;
+  margin-bottom: 14px;
+  font-weight: 400;
+}
+
+/* ── Tags de idioma ── */
+.tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 28px;
+}
+
+.tag {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid rgba(0, 224, 255, 0.2);
+  color: var(--cyan);
+  background: rgba(0, 224, 255, 0.06);
+  letter-spacing: 0.5px;
+}
+
+/* ── Contenedor de links ── */
+.links {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+/* ── Botones base ── */
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: var(--radius-btn);
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+  position: relative;
+  overflow: hidden;
+
+  /* Entrada escalonada */
+  animation: btn-slide-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Cada botón entra con delay distinto */
+.btn:nth-child(1) { animation-delay: 0.15s; }
+.btn:nth-child(2) { animation-delay: 0.22s; }
+.btn:nth-child(3) { animation-delay: 0.29s; }
+.btn:nth-child(4) { animation-delay: 0.36s; }
+.btn:nth-child(5) { animation-delay: 0.43s; }
+
+@keyframes btn-slide-in {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* Efecto hover: levitar + brillo */
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Efecto press: hundir */
+.btn:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+/* Ícono del botón */
+.btn-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.btn:hover .btn-icon {
+  transform: scale(1.1) rotate(-5deg);
+}
+
+/* Flecha de dirección */
+.btn-arrow {
+  margin-left: auto;
+  font-size: 16px;
+  opacity: 0.4;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover .btn-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
+
+/* Hint de copiar email */
+.btn-copy-hint {
+  margin-left: auto;
+  font-size: 11px;
+  opacity: 0.35;
+  letter-spacing: 0.3px;
+  transition: opacity 0.2s;
+}
+.btn:hover .btn-copy-hint {
+  opacity: 0.7;
+}
+
+/* ── Colores por plataforma ── */
+
+/* WhatsApp */
+.btn-whatsapp {
+  border-color: rgba(37, 211, 102, 0.2);
+}
+.btn-whatsapp:hover {
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.4);
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.12);
+}
+.btn-whatsapp .btn-icon {
+  background: rgba(37, 211, 102, 0.12);
+  color: #25d366;
+}
+
+/* Telegram */
+.btn-telegram {
+  border-color: rgba(0, 136, 204, 0.2);
+}
+.btn-telegram:hover {
+  background: rgba(0, 136, 204, 0.08);
+  border-color: rgba(0, 136, 204, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 136, 204, 0.12);
+}
+.btn-telegram .btn-icon {
+  background: rgba(0, 136, 204, 0.12);
+  color: #0088cc;
+}
+
+/* Web */
+.btn-web {
+  border-color: rgba(0, 224, 255, 0.2);
+}
+.btn-web:hover {
+  background: rgba(0, 224, 255, 0.06);
+  border-color: rgba(0, 224, 255, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 224, 255, 0.1);
+}
+.btn-web .btn-icon {
+  background: rgba(0, 224, 255, 0.1);
+  color: var(--cyan);
+}
+
+/* Portafolio */
+.btn-portfolio {
+  border-color: rgba(168, 85, 247, 0.2);
+}
+.btn-portfolio:hover {
+  background: rgba(168, 85, 247, 0.07);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 4px 20px rgba(168, 85, 247, 0.12);
+}
+.btn-portfolio .btn-icon {
+  background: rgba(168, 85, 247, 0.1);
+  color: var(--violet);
+}
+
+/* Correo */
+.btn-email {
+  border-color: rgba(0, 255, 136, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+.btn-email:hover {
+  background: rgba(0, 255, 136, 0.06);
+  border-color: rgba(0, 255, 136, 0.4);
+  box-shadow: 0 4px 20px rgba(0, 255, 136, 0.1);
+}
+.btn-email .btn-icon {
+  background: rgba(0, 255, 136, 0.1);
+  color: var(--green);
+}
+
+/* Estado "copiado" */
+.btn-email.copied {
+  border-color: var(--green);
+  background: rgba(0, 255, 136, 0.08);
+}
+.btn-email.copied .btn-copy-hint {
+  color: var(--green);
+  opacity: 1;
+}
+
+/* ── Footer de tarjeta ── */
+.card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.footer-dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--cyan);
+  opacity: 0.4;
+}
+
+/* ── Toast de confirmación ── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(0, 255, 136, 0.15);
+  border: 1px solid rgba(0, 255, 136, 0.4);
+  color: var(--green);
+  padding: 10px 20px;
+  border-radius: 40px;
+  font-size: 13px;
+  font-weight: 500;
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Responsive ── */
+@media (max-width: 480px) {
+  .card {
+    padding: 32px 20px 28px;
+    border-radius: 20px;
+  }
+  .btn {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tuimagen Studio · Link in Bio</title>
+
+  <!-- Google Fonts: Syne (display) + DM Sans (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ✦ Fondo animado con partículas -->
+  <div class="bg-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <!-- ✦ Tarjeta principal -->
+  <main class="card-wrapper">
+    <div class="card">
+
+      <!-- Logo / Avatar -->
+      <div class="avatar-ring">
+        <div class="avatar">
+          <!-- Reemplazá el emoji por tu logo o foto -->
+          <span class="avatar-letter">T</span>
+        </div>
+      </div>
+
+      <!-- Nombre y tagline -->
+      <h1 class="name">Tuimagen<span class="accent">Studio</span></h1>
+      <p class="tagline">Arquitecta de ideas · IA · Diseño · Estrategia</p>
+
+      <!-- Tags de identidad -->
+      <div class="tags">
+        <span class="tag">🇦🇷 ES</span>
+        <span class="tag">🇬🇧 EN</span>
+        <span class="tag">🇷🇺 RU</span>
+        <span class="tag">✦ AI</span>
+      </div>
+
+      <!-- ✦ Botones de links -->
+      <nav class="links" aria-label="Links de contacto y recursos">
+
+        <!-- WhatsApp -->
+        <!-- ✏️ Reemplazá el número con tu número real (sin + ni espacios) -->
+        <a href="https://wa.me/TUNUMERO" class="btn btn-whatsapp" target="_blank" rel="noopener">
+          <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
+          <span class="btn-label">WhatsApp</span>
+          <span class="btn-arrow">↗</span>
+        </a>
+
+        <!-- Telegram Bot -->
+        <!-- ✏️ Reemplazá con tu username de bot -->
+        <a href="https://t.me/TuimagenuevastudioIA_bot" class="btn btn-telegram" target="_blank" rel="noopener">
+          <span class="btn-icon"><i class="fa-brands fa-telegram"></i></span>
+          <span class="btn-label">Telegram Bot</span>
+          <span class="btn-arrow">↗</span>
+        </a>
+
+        <!-- Sitio Web -->
+        <!-- ✏️ Reemplazá con tu URL -->
+        <a href="https://tuimagenstudios.github.io" class="btn btn-web" target="_blank" rel="noopener">
+          <span class="btn-icon"><i class="fa-solid fa-globe"></i></span>
+          <span class="btn-label">Sitio Web</span>
+          <span class="btn-arrow">↗</span>
+        </a>
+
+        <!-- Portafolio -->
+        <!-- ✏️ Reemplazá con el link de tu portafolio -->
+        <a href="https://tuimagenstudios.netlify.app" class="btn btn-portfolio" target="_blank" rel="noopener">
+          <span class="btn-icon"><i class="fa-solid fa-briefcase"></i></span>
+          <span class="btn-label">Portafolio</span>
+          <span class="btn-arrow">↗</span>
+        </a>
+
+        <!-- Correo (con copia al portapapeles) -->
+        <!-- ✏️ Reemplazá con tu email real -->
+        <button class="btn btn-email" data-email="hola@tuimagen.com" onclick="copyEmail(this)">
+          <span class="btn-icon"><i class="fa-solid fa-envelope"></i></span>
+          <span class="btn-label">Correo</span>
+          <span class="btn-copy-hint">click para copiar</span>
+        </button>
+
+      </nav>
+
+      <!-- Footer de la tarjeta -->
+      <footer class="card-footer">
+        <span class="footer-dot"></span>
+        <span>Tuimagen Studio © 2026</span>
+        <span class="footer-dot"></span>
+      </footer>
+
+    </div>
+  </main>
+
+  <!-- Toast de confirmación al copiar email -->
+  <div class="toast" id="toast">✓ Email copiado al portapapeles</div>
+
+  <script src="script.js"></script>
+</body>
+</html>
